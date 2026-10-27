@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+	--font-display: Georgia, serif;
+	--font-sans: "Trebuchet MS", "Gill Sans", sans-serif;
+}
+
+@layer base {
+	:root {
+		color: #172321;
+		background: #f3f0e8;
+		font-family: var(--font-sans);
+		font-synthesis: none;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	body {
+		min-width: 320px;
+		margin: 0;
+	}
+
+	button,
+	input {
+		font: inherit;
+	}
+}
