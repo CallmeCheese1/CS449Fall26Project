@@ -17,7 +17,9 @@ export class Game {
   private status: GameStatus
   private rating: Rating | null
 
+  //This constructor looks a little weird, right? Basically, define a game by either naming a size and a boardtype, OR by passing an already-created board object.
   public constructor(sizeOrBoard: number | Board, boardType: BoardType = 'english') {
+    //if it's not a number, it's a board object
     this.board =
       typeof sizeOrBoard === 'number'
         ? Game.createBoard(sizeOrBoard, boardType)

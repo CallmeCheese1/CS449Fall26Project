@@ -1,5 +1,6 @@
 import { Board } from './Board'
 
+//see DiamondBoard.ts for explanation
 export class EnglishBoard extends Board {
   protected isValidCell(row: number, column: number): boolean {
     const bandWidth = Math.ceil(this.size / 3)

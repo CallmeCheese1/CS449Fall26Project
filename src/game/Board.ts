@@ -73,12 +73,16 @@ export abstract class Board {
     return this.grid.map((row) => [...row])
   }
 
+  //Grab all of our valid targets for a particular coordinate by getting ALL 
+  // available moves, then whittling that list down to all the available moves 
+  // starting from our FROM and returning only the places our FROM can go TO.
   public getValidTargets(from: Coordinate): Coordinate[] {
     return this.getAvailableMoves()
       .filter((move) => this.sameCoordinate(move.from, from))
       .map((move) => ({ ...move.to }))
   }
 
+  //As the name implies, returns ALL, yes, ALL available moves that we've got by taking every single peg on the board, looking at its potential directions, and then calculating every direction that's jumping over another peg. If it is, put it in our array of valid moves.
   public getAvailableMoves(): Move[] {
     const moves: Move[] = []
     for (let row = 0; row < this.size; row += 1) {
@@ -102,6 +106,10 @@ export abstract class Board {
     return moves
   }
 
+  //Do the thing. Check to make sure we're moving to a valid place, 
+  // put together a move, check if it's in our total available moves, and 
+  // if so, destroy me, destroy who i'm jumping over, and make a new 
+  // peg at the coordinate. Returns true if the move works, false if not valid.
   public executeMove(from: Coordinate, to: Coordinate): boolean {
     if (!this.isCoordinate(from) || !this.isCoordinate(to)) {
       return false
@@ -137,6 +145,8 @@ export abstract class Board {
     return true
   }
 
+  //Not used in any actual gameplay. Unit tests will call this function 
+  // in the process to set up new boards to automatically test game states.
   protected setCell(coordinate: Coordinate, state: CellState): void {
     if (!this.isInBounds(coordinate)) {
       throw new Error('Cannot set a cell outside the board.')

@@ -12,6 +12,12 @@ const centerOf = (size: number): Coordinate => ({
 const countCells = (board: Board, state: CellState): number =>
   board.getGrid().flat().filter((cell) => cell === state).length
 
+//NOTE: As described in the User Stories/Acceptance Criteria vs. Tests 
+// section of the sprint doc, this is where we run the tests for AC 1.1,
+//  2.1, and 3.1. Here, we have a suite of tests where we specify a board
+//  type and a board size, create that board, and then check that it has
+//  what it should. This unit test suite was written by AI, but this 
+// comment is as human as a heart can be.
 describe('board initialization', () => {
   it.each([
     [EnglishBoard, 7, 32],
@@ -32,6 +38,9 @@ describe('board initialization', () => {
 })
 
 describe('board moves', () => {
+    //As described in the Sprint2 doc, welcome! This is where 
+    // the test for executing a valid jump is. This is just one 
+    // test for a valid jump, not a suite. 
   it('executes an orthogonal jump', () => {
     const board = new EnglishBoard(7)
     const from = { row: 3, column: 1 }
@@ -57,6 +66,9 @@ describe('board moves', () => {
     expect(board.getCell(to)).toBe(CellState.PEG)
   })
 
+  //As described in the Sprint2 document, welcome. This is where things 
+  // spice up with a suite of tests to REALLY make sure the board 
+  // doesn't let us make invalid moves.
   it.each([
     [{ row: 3, column: 1 }, { row: 3, column: 2 }],
     [{ row: 3, column: 1 }, { row: 3, column: 5 }],

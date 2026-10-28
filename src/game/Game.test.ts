@@ -26,6 +26,8 @@ describe('game controller', () => {
     expect(game.move({ row: 3, column: 1 }, { row: 3, column: 3 })).toBe(true)
   })
 
+  //Boom. Welcome from Sprint2. Here's a suite of tests to make sure that, 
+  // depending on the number of pegs left, the game properly reports the according rating. 
   it.each([
     [1, 'Outstanding'],
     [2, 'Very Good'],
